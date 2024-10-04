@@ -110,3 +110,68 @@ fn handle_peer(status: PeerStatus) {
 ```
 
 The problem is that later when you want to add a new variant to `PeerStatus`, the compiler will not help you find all the locations where the enum is being used and might need updating.  
+
+# Parse don't validate example
+
+```rust
+fn validate_no_dup_shard_ids(shard_ids: Vec<ShardId>) {
+    if dups_found {
+        panic!();
+    }
+}
+
+fn count_accounts_in_shards(shard_ids: Vec<ShardId>) -> usize {
+    assert!(validate_no_dup_shard_ids(shard_ids));
+    // ...
+}
+```
+
+In the above example, we might forget to call `validate_no_dup_shard_ids()`.
+
+```rust
+fn validate_no_dup_shard_ids(shard_ids: Vec<ShardId>) -> HashSet<ShardId> {
+    if dups_found {
+        panic!();
+    }
+}
+
+fn count_accounts_in_shards(shard_ids: HashSet<ShardId>) -> usize {
+    // ...
+}
+
+```
+
+If we redefine `count_accounts_in_shards()` to only accept valid input, then it is "guaranteed" not to panic and we do not have to worry about checking if the caller has validated the input or we need to validate, etc.
+
+# Boolean blindness
+
+Lots of articles on the Internet.  I couldn't find one that I really liked.  The basic idea is that boolean values do not provide enough expressiveness.
+
+```rust
+fn set_loading_status(enable: bool) {...}
+
+set_loading_status(true)
+set_loading_status(false)
+```
+
+When you look at the call sites, it is not very easy to tell what exactly is being done.  Instead consider either of the following options.
+
+```rust
+fn enable_loading_status() {...}
+fn disable_loading_status() {...}
+```
+
+or 
+
+```rust
+enum LoadingStatus{
+    Enable,
+    Disable,
+}
+
+fn set_loading_status(status: LoadingStatus) {...}
+
+set_loading_status(LoadingStatus::Enable);
+```
+
+Both of the options above are much easier to read and an improvement over the original.
