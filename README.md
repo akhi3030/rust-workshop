@@ -32,18 +32,20 @@ pub struct Balance(u64);
 pub struct Amount(u64);
 
 impl Balance {
+    // Note that this function is not `pub`.  This helps with additional safety but might be too cumbersome.
     fn get(&self) -> u64 {
         self.0
     }
 }
 
 impl Amount {
+    // Note that this function is not `pub`.  This helps with additional safety but might be too cumbersome.
     fn get(&self) -> u64 {
         self.0
     }
 }
 
-fn withdraw_funds_even_better(
+pub fn withdraw_funds_even_better(
     balance: Balance,
     amount_to_withdraw: Amount,
 ) -> Result<Balance, String> {
