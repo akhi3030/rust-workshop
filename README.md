@@ -14,7 +14,7 @@ fn withdraw_funds(balance: u64, amount_to_withdraw: u64) -> Result<u64, String> 
 Let's make the code more readable
 
 ```rust
- type Balance = u64;
+type Balance = u64;
 type Amount = u64;
 
 fn withdraw_funds_better(balance: Balance, amount_to_withdraw: Amount) -> Result<Balance, String> {
