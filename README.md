@@ -114,7 +114,7 @@ fn handle_peer(status: PeerStatus) {
 
 The problem is that later when you want to add a new variant to `PeerStatus`, the compiler will not help you find all the locations where the enum is being used and might need updating.  
 
-# Parse don't validate example
+# Parse don't validate
 
 ```rust
 fn validate_no_dup_shard_ids(shard_ids: Vec<ShardId>) {
@@ -144,7 +144,7 @@ fn count_accounts_in_shards(shard_ids: HashSet<ShardId>) -> usize {
 
 ```
 
-If we redefine `count_accounts_in_shards()` to only accept valid input, then it is "guaranteed" not to panic and we do not have to worry about checking if the caller has validated the input or we need to validate, etc.
+If we redefine `count_accounts_in_shards()` to only accept valid inputs, then it is "guaranteed" not to panic and we do not have to worry about checking if the caller has validated the input or validate input ourselves, etc.
 
 # Boolean blindness
 
