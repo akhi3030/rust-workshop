@@ -60,9 +60,10 @@ pub fn withdraw_funds_even_better(
 
 Absolutely nothing!  Just kidding =)
 
-Use them to make it easier to read and write large types e.g. `Result<HashMap<FlatStorageDelta, FlatStorageValue>, FlatStorageLookupError>` could be type aliases to `FlatStorageLookupResult`.
+Use them to make it easier to read and write large types e.g. `Result<HashMap<FlatStorageDelta, FlatStorageValue>, FlatStorageLookupError>` could be type aliased to `FlatStorageLookupResult`.
 
-* We have to read and write less code and many types we may not really care what exactly the precise type is.
+* We have to read and write less code
+* We may not really care what exactly the precise type is when we are reading code.  By looking at alias, we can guess that it is a `Result<>` type and make some assumptions about what is being returned in the two variants.
 * Chances are small that such a precise type exists elsewhere in the code so that we mistake it for the wrong argument.
 
 # Use the type system to help document code
@@ -177,3 +178,12 @@ set_loading_status(LoadingStatus::Enable);
 ```
 
 Both of the options above are much easier to read and an improvement over the original.
+
+# Do not assume that you will always be using an IDE
+
+A IDE provides a lot of support.  For inferred types, it will tell us what the precise type is; by hovering over variables, etc. we can quickly look up the type definitions.
+
+However, there are many occassions when we have to look at code and loading it in an IDE would not be possible or be too cumbersome.  Some examples:
+
+* We are looking at some code on a production machine or on github or other places where the IDE is not installed.
+* We are looking at code at different commits (e.g. using `git cat`) and it would be too cumbersome to actually checkout code at those commit points and wait for the analyzer to finish running.
