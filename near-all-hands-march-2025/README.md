@@ -19,6 +19,7 @@ Very important section: [Parse, don't validate](https://github.com/akhi3030/rust
 
 - Can remove a duplicate signature check without losing confidence in correctness
 - Greatly increased the readability of the code
+- We discovered other places where duplicate signature verification is happening and performance can be further improved
 - Allowed for cleaner abstractions which actually allowed us to [parallelise things](https://github.com/near/nearcore/pull/13081/files) better and improve performance even more.
 
 # Strive for better interfaces
