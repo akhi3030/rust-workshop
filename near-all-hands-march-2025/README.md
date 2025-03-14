@@ -20,7 +20,7 @@ Very important section: [Parse, don't validate](https://github.com/akhi3030/rust
 - So often, we have code that passes objects as reference and then clones it.  E.g. [here](https://github.com/near/nearcore/pull/13112/files).
 - Similarly, we clone objects, pass it by value, and then ultimately, only need a reference to it and then drop it.  E.g. [here](https://github.com/near/nearcore/pull/13098/files)
 
-==Our code has a lot of unnecessary complexity.==
+**Our code has a lot of unnecessary complexity.**
 
 E.g.: [here](https://github.com/near/nearcore/blob/master/chain/chain/src/store/mod.rs#L1828)
 - This is quite a lot of unnecessary complexity.  Not only could we potentially store the `Block` as an `Option<Block>` but we could actually improve the overall [API](https://github.com/near/nearcore/blob/master/chain/chain/src/store/mod.rs#L1550) as we would expect `save_block` to be called at most once.
