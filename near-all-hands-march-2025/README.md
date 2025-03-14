@@ -1,6 +1,6 @@
 # Brief review
 
-[Presentation]([https://github.com/akhi3030/rust-workshop/blob/main/README.md](https://github.com/akhi3030/rust-workshop/blob/main/london-offsite-2024/README.md)) I gave during the last offsite in London.
+[Presentation](https://github.com/akhi3030/rust-workshop/blob/main/london-offsite-2024/README.md) I gave during the last offsite in London.
 
 Very important section: [Parse, don't validate](https://github.com/akhi3030/rust-workshop/blob/main/README.md#parse-dont-validate) and [this](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/) blog post.
 
