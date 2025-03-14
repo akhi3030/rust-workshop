@@ -15,6 +15,12 @@ Very important section: [Parse, don't validate](https://github.com/akhi3030/rust
 - A better fix is to introduce `ValidatedTransaction` which can only be constructed by verifying signatures and performing other validations.  
 - Tx pools store `ValidatedTransaction`s so any consumer of txs from the pool can be confident that the verification has happened and they do not need to repeat it.
 
+## Benefits
+
+- Can remove a duplicate signature check without losing confidence in correctness
+- Greatly increased the readability of the code
+- Allowed for cleaner abstractions which actually allowed us to [parallelise things](https://github.com/near/nearcore/pull/13081/files) better and improve performance even more.
+
 # Strive for better interfaces
 
 - So often, we have code that passes objects as reference and then clones it.  E.g. [here](https://github.com/near/nearcore/pull/13112/files).
